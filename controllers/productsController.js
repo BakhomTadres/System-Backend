@@ -9,20 +9,6 @@ export const getProducts = async (req, res) => {
   }
 };
 
-export const getProductById = async (req, res) => {
-  try {
-    const product = await Product.findOne({ barcode: req.params.id });
-    if (!product) {
-      return res
-        .status(404)
-        .json({ status: "fail", message: "Product not found" });
-    }
-    res.json({ status: "success", data: product });
-  } catch (error) {
-    res.status(500).json({ status: "error", message: error.message });
-  }
-};
-
 export const createProduct = async (req, res) => {
   const { name, barcode, buyPrice, sellPrice, quantity, minQuantity } =
     req.body;
